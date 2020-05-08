@@ -1,0 +1,45 @@
+﻿@model Project.ViewModels.BookAuthorCategoryModel
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit Category of @Model.book.Title</h1>
+<a asp-action="Edit" asp-route-id="@Model.book.Id" asp-controller="Book">Save</a>
+
+<div class="container">
+    Categories
+    <ul>
+        @foreach (var category in Model.categories)
+        {
+            @foreach (var bookCategory in Model.bookCategories)
+            {
+                @if (bookCategory.CategoryId == category.Id)
+                {
+                    <li>@category.CategoryName</li>
+                }
+            }
+        }
+    </ul>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">CategoryName</th>
+            <th scope="col">Add</th>
+            <th scope="col">Remove</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model.categories)
+        {
+            <tr>
+                <th scope="row">@item.CategoryName</th>
+                <td><a asp-action="AddCategory" asp-route-id="@item.Id" asp-route-bookid="@Model.book.Id" asp-controller="Book">Add</a></td>
+                <td><a asp-action="RemoveCategory" asp-route-id="@item.Id" asp-route-bookid="@Model.book.Id" asp-controller="Book">Remove</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>

@@ -1,0 +1,26 @@
+﻿@model Project.ViewModels.BookAuthorCategoryModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+
+<h1>Add</h1>
+
+<form asp-action="Add" asp-controller="Book" asp-anti-forgery="true">
+    <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" asp-for="book.Title"  />
+    </div>
+    <div class="form-group">
+        <label>Author</label>
+        <select class="form-control" asp-for="book.AuthorId">
+            @foreach (var item in Model.authors)
+            {
+                <option value="@item.Id">@item.FullName</option>
+            }
+        </select>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Add" class="btn btn-outline-dark" />
+    </div>
+</form>

@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Project.Models.Entities.Author>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Authors</h1>
+
+<a asp-action="Add" asp-controller="Author">Add</a>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Author Name</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@Html.DisplayFor(modelItem => item.Id)</th>
+                <td>@Html.DisplayFor(modelItem => item.FullName)</td>
+                <td><a asp-action="Edit" asp-route-id="@item.Id" asp-controller="Author">Edit</a></td>
+                <td><a asp-action="Delete" asp-route-id="@item.Id" asp-controller="Author">Delete</a></td>
+            </tr>
+        }
+
+    </tbody>
+</table>
